@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Rock Paper Scissors! </title>
+    </head>
+    <body>
+        <script>
+
+            function playRound(player){
+                let all = ["rock", "paper", "scissors"];
+
+                function computerPlay(){
+                return all[Math.floor(Math.random() * all.length)];
+                }
+                let computer = computerPlay();
+                player = player.toLowerCase();
+        
+                playerIndex = all.indexOf(player); 
+                compIndex = all.indexOf(computer);
+    
+                let winIndex = (playerIndex-1 >= 0)? playerIndex-1: 2; //find index of winning option. if -1, set it to 2. 
+
+                if (compIndex == winIndex){
+                    console.log(`You win! ${player} beats ${computer}.`);
+                    return "W";
+                } else if (compIndex == playerIndex){
+                    console.log(`Draw! You both picked ${player}.`);
+                } else{
+                    console.log(`You lose! ${computer} beats ${player}.`);
+                    return "L";
+                }
+            }
+
+            function game(){
+                let playerScore = 0;
+                let compScore = 0;
+                let msg;
+
+                for (let i = 0; i < 5; i++){
+                    let p = prompt("Enter: ");
+                    result = playRound(p);
+                    playerScore = (result == "W")? playerScore += 1: playerScore; //if player wins, add 1 to score
+                    compScore = (result == "L")? compScore += 1: compScore;// if comp wins, add 1 to score
+                    }
+
+                if (playerScore > compScore){
+                    msg = "You win!";
+                } else if (playerScore < compScore){
+                    msg = "You lose!";
+                } else {
+                    msg = "Draw!";
+                }
+                console.log(`Final Scores:\nPlayer: ${playerScore}\nComputer: ${compScore}`);
+                console.log(msg);
+            }
+
+            game();
+
+        </script>
+    </body>
+</html>
